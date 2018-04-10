@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 
+// Modified from Tutorial Version
 public class PlayerShooting : MonoBehaviour
 {
     public int damagePerShot = 20;                  // The damage inflicted by each bullet.
@@ -96,17 +97,17 @@ public class PlayerShooting : MonoBehaviour
         shootRay.origin = transform.position;
         shootRay.direction = transform.forward;
 
-        // Perform the raycast against gameobjects on the shootable layer and if it hits something...
+        // Perform the raycast against gameobjects on the shootable layer and if it hits something... (Modified By Me)
         if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
         {
             // Try and find an EnemyHealth script on the gameobject hit.
-            IDamageable damage = shootHit.collider.GetComponent <IDamageable> ();
-            var onDamage = shootHit.collider.GetComponent<EnemyHealth>();
+            IDamageable damage = shootHit.collider.GetComponent <IDamageable> (); // My Mod
+            var onDamage = shootHit.collider.GetComponent<EnemyHealth>(); // My Mod
             // If the EnemyHealth component exist...
-            if(damage != null && onDamage != null)
+            if(damage != null && onDamage != null) // My Mod
             {
                 // ... the enemy should take damage.
-                onDamage.OnDamage((int)damage.ApplyDamage(damagePerShot, damage.Armor, shootHit.point), onDamage.gameObject);
+                onDamage.OnDamage((int)damage.ApplyDamage(damagePerShot, damage.Armor, shootHit.point), onDamage.gameObject); // My Mod
             }
 
             // Set the second position of the line renderer to the point the raycast hit.

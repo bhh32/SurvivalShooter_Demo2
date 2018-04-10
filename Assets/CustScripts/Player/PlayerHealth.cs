@@ -3,16 +3,17 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+// Script Modified From Tutorial Version
 [System.Serializable]
 public class OnDamageEvent : UnityEvent<int>
 {}
 
 public class PlayerHealth : MonoBehaviour
 {
-    public delegate void HealthChange(int health);
-    HealthChange OnHealthChange;
+    public delegate void HealthChange(int health); // My Mod
+    HealthChange OnHealthChange; // My Mod
 
-    public OnDamageEvent OnDamage;
+    public OnDamageEvent OnDamage; // My Mod
 
 
     public int startingHealth = 100;                            // The amount of health the player starts the game with.
@@ -31,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
     bool isDead;                                                // Whether the player is dead.
     bool damaged;                                               // True when the player gets damaged.
 
-
+    // My Mod
     void UpdateHealthUI(int health)
     {
         healthSlider.value = health;
@@ -48,11 +49,13 @@ public class PlayerHealth : MonoBehaviour
         // Set the initial health of the player.
         currentHealth = startingHealth;
 
-        OnHealthChange += UpdateHealthUI;
+        OnHealthChange += UpdateHealthUI; // My Mod
 
+        // My Mod
         if (OnDamage != null)
             OnDamage = new OnDamageEvent();
 
+        // My Mod
         OnDamage.AddListener(DamageUpdate);
     }
 
@@ -76,7 +79,7 @@ public class PlayerHealth : MonoBehaviour
         damaged = false;
     }
 
-
+    // My Mod
     public void TakeDamage(int amount)
     {
         // Set the damaged flag so the screen will flash.

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour, IDamageable
+// Modified From Tutorial Script
+public class EnemyHealth : MonoBehaviour, IDamageable // Mod by me
 {
-    public delegate void HealthChange(int health, GameObject obj);
-    public HealthChange OnDamage;
+    public delegate void HealthChange(int health, GameObject obj); // Mod by me
+    public HealthChange OnDamage; // Mod by me
 
     public int startingHealth = 100;            // The amount of health the enemy starts the game with.
     public int currentHealth;                   // The current health the enemy has.
@@ -19,20 +20,24 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     bool isDead;                                // Whether the enemy is dead.
     bool isSinking;                             // Whether the enemy has started sinking through the floor.
 
+    // Mod by me
     public float Health
     {
         get { return currentHealth; }
         set { currentHealth = (int)value; }
     }
 
+    // Mod by me
     public float armor;
 
+    // Mod by me
     public float Armor
     {
         get { return armor; }
         set { armor = value; }
     }
 
+    // Mod by me
     void OnDamageTaken(int damage, GameObject hitObj)
     {
         hitObj.name = hitObj.name.Replace("(Clone)", " ").TrimEnd();
@@ -50,6 +55,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         // Setting the current health when the enemy first spawns.
         currentHealth = startingHealth;
 
+        // Mod by me
         OnDamage += OnDamageTaken;
     }
 
@@ -64,6 +70,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         }
     }
 
+    // Mod by me
     public float ApplyDamage(float amount, float armor, Vector3 hitPoint)
     {
         float damageTaken = 0f;

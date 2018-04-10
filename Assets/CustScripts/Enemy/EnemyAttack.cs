@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// Modified from Tutorial version
 public class EnemyAttack : MonoBehaviour
 {
     public float timeBetweenAttacks = 0.5f;     // The time in seconds between each attack.
@@ -76,7 +77,7 @@ public class EnemyAttack : MonoBehaviour
         // If the player has health to lose...
         if(playerHealth.currentHealth > 0)
         {
-            // ... damage the player.
+            // ... damage the player. (Mod by me)
             playerHealth.TakeDamage (attackDamage);
         }
     }
